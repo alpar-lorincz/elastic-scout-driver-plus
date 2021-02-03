@@ -5,7 +5,7 @@ namespace ElasticScoutDriverPlus\Tests\Integration;
 use Carbon\Carbon;
 use ElasticAdapter\Documents\Document;
 use ElasticAdapter\Search\Highlight;
-use ElasticScoutDriverPlus\Match;
+use ElasticScoutDriverPlus\SearchMatch;
 use ElasticScoutDriverPlus\SearchResult;
 use ElasticScoutDriverPlus\Tests\App\Author;
 use ElasticScoutDriverPlus\Tests\App\Book;
@@ -25,7 +25,7 @@ use stdClass;
  * @covers \ElasticScoutDriverPlus\Factories\LazyModelFactory
  *
  * @uses   \ElasticScoutDriverPlus\Factories\SearchResultFactory
- * @uses   \ElasticScoutDriverPlus\Match
+ * @uses   \ElasticScoutDriverPlus\SearchMatch
  * @uses   \ElasticScoutDriverPlus\SearchResult
  * @uses   \ElasticScoutDriverPlus\Support\ModelScope
  */
@@ -72,7 +72,7 @@ final class RawSearchTest extends TestCase
         $this->assertCount($target->count(), $found->models());
         $this->assertEquals($target->toArray(), $found->models()->toArray());
 
-        $found->matches()->each(function (Match $match) {
+        $found->matches()->each(function (SearchMatch $match) {
             /** @var Book $model */
             $model = $match->model();
             $highlight = $match->highlight();
@@ -378,7 +378,7 @@ final class RawSearchTest extends TestCase
 
         // assert each page contains expected models
         $getPageModels = static function (LengthAwarePaginator $paginator): Collection {
-            return collect($paginator->items())->map(static function (Match $match) {
+            return collect($paginator->items())->map(static function (SearchMatch $match) {
                 return $match->model();
             });
         };

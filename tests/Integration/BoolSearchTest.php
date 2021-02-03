@@ -24,7 +24,7 @@ use ElasticScoutDriverPlus\Tests\App\Book;
  * @uses   \ElasticScoutDriverPlus\Builders\QueryParameters\Validators\OneOfValidator
  * @uses   \ElasticScoutDriverPlus\Builders\RangeQueryBuilder
  * @uses   \ElasticScoutDriverPlus\Factories\SearchResultFactory
- * @uses   \ElasticScoutDriverPlus\Match
+ * @uses   \ElasticScoutDriverPlus\SearchMatch
  * @uses   \ElasticScoutDriverPlus\SearchResult
  * @uses   \ElasticScoutDriverPlus\Support\Arr
  * @uses   \ElasticScoutDriverPlus\Support\ModelScope

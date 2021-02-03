@@ -17,7 +17,7 @@ use Illuminate\Database\Eloquent\Model;
  * @uses   \ElasticScoutDriverPlus\Builders\QueryParameters\Validators\AllOfValidator
  * @uses   \ElasticScoutDriverPlus\Factories\LazyModelFactory
  * @uses   \ElasticScoutDriverPlus\Factories\SearchResultFactory
- * @uses   \ElasticScoutDriverPlus\Match
+ * @uses   \ElasticScoutDriverPlus\SearchMatch
  * @uses   \ElasticScoutDriverPlus\SearchResult
  * @uses   \ElasticScoutDriverPlus\Support\ModelScope
  */

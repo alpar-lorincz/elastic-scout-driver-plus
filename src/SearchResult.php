@@ -45,7 +45,7 @@ final class SearchResult
     {
         $models = new EloquentCollection();
 
-        $this->matches->each(static function (Match $match) use ($models) {
+        $this->matches->each(static function (SearchMatch $match) use ($models) {
             $models->push($match->model());
         });
 
@@ -54,7 +54,7 @@ final class SearchResult
 
     public function documents(): BaseCollection
     {
-        $documents = $this->matches->map(static function (Match $match) {
+        $documents = $this->matches->map(static function (SearchMatch $match) {
             return $match->document();
         });
 
@@ -63,7 +63,7 @@ final class SearchResult
 
     public function highlights(): BaseCollection
     {
-        $highlights = $this->matches->map(static function (Match $match) {
+        $highlights = $this->matches->map(static function (SearchMatch $match) {
             return $match->highlight();
         });
 

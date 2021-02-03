@@ -7,7 +7,7 @@ use ElasticAdapter\Search\Highlight;
 use ElasticAdapter\Search\Hit;
 use ElasticAdapter\Search\Suggestion;
 use ElasticScoutDriverPlus\Factories\LazyModelFactory;
-use ElasticScoutDriverPlus\Match;
+use ElasticScoutDriverPlus\SearchMatch;
 use ElasticScoutDriverPlus\SearchResult;
 use ElasticScoutDriverPlus\Tests\App\Author;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -15,7 +15,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 /**
  * @covers \ElasticScoutDriverPlus\SearchResult
  *
- * @uses   \ElasticScoutDriverPlus\Match
+ * @uses   \ElasticScoutDriverPlus\SearchMatch
  */
 final class SearchResultTest extends TestCase
 {
@@ -34,8 +34,8 @@ final class SearchResultTest extends TestCase
     public function test_matches_can_be_received(): void
     {
         $matches = collect([
-            new Match($this->factory, new Hit(['_index' => 'books', '_id' => '1'])),
-            new Match($this->factory, new Hit(['_index' => 'books', '_id' => '2'])),
+            new SearchMatch($this->factory, new Hit(['_index' => 'books', '_id' => '1'])),
+            new SearchMatch($this->factory, new Hit(['_index' => 'books', '_id' => '2'])),
         ]);
 
         $searchResult = new SearchResult($matches, collect(), collect(), $matches->count());
@@ -64,7 +64,7 @@ final class SearchResultTest extends TestCase
                 '_source' => $model->toSearchableArray(),
             ]);
 
-            return new Match($this->factory, $hit);
+            return new SearchMatch($this->factory, $hit);
         });
 
         $searchResult = new SearchResult($matches, collect(), collect(), $matches->count());
@@ -87,7 +87,7 @@ final class SearchResultTest extends TestCase
                 '_source' => $document->getContent(),
             ]);
 
-            return new Match($this->factory, $hit);
+            return new SearchMatch($this->factory, $hit);
         });
 
         $searchResult = new SearchResult($matches, collect(), collect(), $matches->count());
@@ -110,7 +110,7 @@ final class SearchResultTest extends TestCase
                 'highlight' => $highlight ? $highlight->getRaw() : null,
             ]);
 
-            return new Match($this->factory, $hit);
+            return new SearchMatch($this->factory, $hit);
         });
 
         $searchResult = new SearchResult($matches, collect(), collect(), $matches->count());

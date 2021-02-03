@@ -5,12 +5,12 @@ namespace ElasticScoutDriverPlus\Tests\Integration;
 use ElasticAdapter\Search\Highlight;
 use ElasticAdapter\Search\Hit;
 use ElasticScoutDriverPlus\Factories\LazyModelFactory;
-use ElasticScoutDriverPlus\Match;
+use ElasticScoutDriverPlus\SearchMatch;
 use ElasticScoutDriverPlus\Tests\App\Book;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * @covers \ElasticScoutDriverPlus\Match
+ * @covers \ElasticScoutDriverPlus\SearchMatch
  */
 final class MatchTest extends TestCase
 {
@@ -41,7 +41,7 @@ final class MatchTest extends TestCase
             'highlight' => ['title' => ['<em>test</em>']],
         ]);
 
-        $this->match = new Match($factory, $hit);
+        $this->match = new SearchMatch($factory, $hit);
     }
 
     public function test_index_name_can_be_received(): void
